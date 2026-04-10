@@ -1,0 +1,12 @@
+---
+description: Padrões DDL e SQL para PostgreSQL
+globs: sql/**/*.sql
+alwaysApply: false
+---
+
+# SQL (PostgreSQL)
+
+- Preferir `TIMESTAMPTZ`, `UUID` ou `BIGSERIAL` para chaves conforme o domínio; nomear constraints (`PK`, `FK`, `UNIQUE`).
+- Índices em colunas de filtro e FKs frequentes.
+- Comentários curtos no topo do arquivo: objetivo + como executar (`psql` ou ferramenta do time).
+- Evitar `SELECT *` em scripts de migração que alteram dados; ser explícito nas colunas.

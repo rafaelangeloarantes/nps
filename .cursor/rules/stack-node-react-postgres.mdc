@@ -1,0 +1,16 @@
+---
+description: Visão geral do monorepo backend Node + frontend React + PostgreSQL
+alwaysApply: true
+---
+
+# Stack do projeto (NPS)
+
+- **Backend**: pasta `backend/`, Express, cliente `pg`, variáveis em `.env` (use `.env.example` versionado).
+- **Frontend**: pasta `frontend/`, Vite + React; chamadas de API preferencialmente via `fetch` para `/api` (proxy no Vite em dev).
+- **Banco**: scripts DDL em `sql/`; nunca embutir credenciais no código.
+
+Ao iniciar funcionalidade nova: API no backend com rotas em `backend/routes/` quando fizer sentido; UI no `frontend/src/`; mudanças de esquema em `sql/`.
+
+Priorizar prepared statements (`$1`, `$2`) e validação de entrada no servidor.
+
+**Consulta (início de projeto):** `.cursor/README.md` e `.cursor/guias/inicio-projeto-node-react-postgres.md`.

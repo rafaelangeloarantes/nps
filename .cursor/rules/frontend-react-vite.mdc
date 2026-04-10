@@ -1,0 +1,12 @@
+---
+description: Convenções React + Vite no frontend
+globs: frontend/**/*.{jsx,tsx,js,ts}
+alwaysApply: false
+---
+
+# Frontend (React + Vite)
+
+- Componentes funcionais; estado local com `useState` / `useReducer`; efeitos e dados remotos com `useEffect` ou biblioteca acordada pelo usuário.
+- Caminhos de API relativos (`/api/...`) para funcionar com `server.proxy` no Vite.
+- Evitar armazenar segredos no bundle; autenticação sensível via httpOnly cookies ou fluxo definido pelo backend.
+- Manter estilos em CSS dedicados (`src/*.css` ou módulos) em linha com o padrão já usado no projeto.

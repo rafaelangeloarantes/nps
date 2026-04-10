@@ -1,0 +1,14 @@
+---
+description: Convenções Express, PostgreSQL e segurança no backend
+globs: backend/**/*.js
+alwaysApply: false
+---
+
+# Backend (Express + pg)
+
+- Carregar `dotenv` no entrypoint antes de ler `process.env`.
+- Exportar um `Pool` (ou singleton) em `db.js`; reutilizar conexões, não criar pool por request.
+- Rotas REST sob prefixo `/api`; respostas JSON consistentes `{ data }` ou `{ error, message }`.
+- Queries: sempre parametrizadas; nunca concatenar input do usuário em SQL.
+- CORS: em produção, definir `origin` explícito; em dev pode ser mais permissivo conforme `vite` proxy.
+- Tratar erros com middleware final; logar no servidor, mensagem genérica ao cliente em produção.
