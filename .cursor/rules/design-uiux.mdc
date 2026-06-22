@@ -1,0 +1,66 @@
+---
+description: "Padrões de design, UI/UX e layout visual"
+globs: "**/*.{html,css,php}"
+alwaysApply: false
+---
+
+# Padrões de Design e UI/UX
+
+## Princípios
+
+- Layout clean, responsivo e moderno
+- Flat Design: sem sombras excessivas, gradientes pesados ou skeuomorfismo
+- Minimalismo funcional: cada elemento tem um propósito
+- Mobile-first: projetar para mobile, escalar para desktop
+
+## Paleta de Cores
+
+Usar design tokens. Paleta padrão sugerida (ajustar por projeto):
+
+```css
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary: #64748b;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --warning: #f59e0b;
+    --info: #0ea5e9;
+    --bg-light: #f8fafc;
+    --bg-dark: #0f172a;
+    --text-light: #1e293b;
+    --text-dark: #f1f5f9;
+    --border: #e2e8f0;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+```
+
+## Tipografia
+
+- Fontes: Inter (preferencial), Roboto, Lato, Open Sans
+- Tamanho base: `1rem` (16px)
+- Line-height: entre 1.4 e 1.6
+- Hierarquia clara: h1 > h2 > h3 > p
+- Nunca usar mais de 2 famílias tipográficas
+
+## Espaçamento
+
+- Padding e margin consistentes usando múltiplos de 4px ou 8px
+- Espaço generoso entre seções (mínimo 2rem)
+- Campos de formulário com padding interno confortável
+
+## Componentes Visuais
+
+- Botões: cantos arredondados (6-8px), estados hover/active/disabled
+- Cards: borda sutil ou sombra leve, padding interno generoso
+- Tabelas: linhas alternadas (zebra), hover na linha, cabeçalho fixo
+- Formulários: labels acima dos campos, validação visual inline
+- Modais: overlay escuro, animação suave de entrada
+
+## Dark Mode
+
+- Implementar com classe `.dark-mode` no `<body>`
+- Toggle via jQuery com persistência em localStorage
+- Inverter variáveis CSS conforme contexto
+- Garantir contraste adequado em ambos os modos

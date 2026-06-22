@@ -1,0 +1,45 @@
+---
+description: "Padrão DataTable: NpsDataTable.create, dt-wrapper, datatable-config.js e datatable-override.css"
+globs: "**/*.{php,js,css}"
+alwaysApply: false
+---
+
+# DataTable — Padrão obrigatório
+
+Consulte a skill `.cursor/skills/datatable/SKILL.md` para detalhes completos.
+
+## Inicialização
+
+```javascript
+tabela = NpsDataTable.create('#tabelaModulo', { processing: true, serverSide: true, ajax: '...', columns: [...] });
+```
+
+Nunca usar `$('#tabela').DataTable({...})` diretamente nos módulos admin.
+
+## HTML
+
+```html
+<div class="table-wrapper dt-wrapper">
+    <table id="tabelaModulo" class="display" width="100%">
+        <thead>
+            <tr>
+                <th>Coluna</th>
+                <th class="dt-no-sort">Ações</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+```
+
+## Assets
+
+- JS: `js/datatable-config.js` (após jquery.dataTables.min.js, antes de main.js e scripts do módulo)
+- CSS: `css/datatable-override.css` (após style.css)
+- Plugin: `jquery.dataTables.min.css/js` — **não** usar tema Bootstrap do DataTables
+
+## Defaults centralizados (`NpsDataTable`)
+
+- `dom: '<"dt-toolbar"lf>rt<"dt-footer"ip>'`
+- `stripeClasses: []`
+- Idioma PT-BR (HTTPS)
+- Resize automático de colunas

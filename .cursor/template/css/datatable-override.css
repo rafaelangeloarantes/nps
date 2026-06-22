@@ -1,0 +1,319 @@
+/**
+ * Override do DataTables — carregar por último para garantir prioridade.
+ * Tipografia Inter, espaçamentos generosos, toolbar/footer integrados ao card.
+ */
+
+/* Card: tabela ocupa toda a área interna sem padding duplicado (somente quando é o único filho) */
+.card-body:has(> .table-wrapper.dt-wrapper:only-child) {
+    padding: 0;
+}
+
+.card-body > .table-wrapper.dt-wrapper {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+/* Reset do CSS padrão do plugin */
+.table-wrapper.dt-wrapper table.dataTable thead .sorting,
+.table-wrapper.dt-wrapper table.dataTable thead .sorting_asc,
+.table-wrapper.dt-wrapper table.dataTable thead .sorting_desc,
+.table-wrapper.dt-wrapper table.dataTable thead .sorting_asc_disabled,
+.table-wrapper.dt-wrapper table.dataTable thead .sorting_desc_disabled {
+    background-image: none !important;
+    background-position: unset !important;
+}
+
+.table-wrapper.dt-wrapper table.dataTable {
+    font-family: var(--font);
+    font-size: .875rem;
+    line-height: 1.5;
+    border-collapse: collapse;
+}
+
+/* Cabeçalho */
+.table-wrapper.dt-wrapper table.dataTable thead th {
+    padding: .9375rem 1.375rem;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    vertical-align: middle;
+    position: relative;
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th:first-child {
+    padding-left: 1.5rem;
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th:last-child {
+    padding-right: 1.5rem;
+}
+
+/* Células do corpo */
+.table-wrapper.dt-wrapper table.dataTable tbody td {
+    padding: 1rem 1.375rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.table-wrapper.dt-wrapper table.dataTable tbody td:first-child {
+    padding-left: 1.5rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+    font-size: .8125rem;
+}
+
+.table-wrapper.dt-wrapper table.dataTable tbody td:last-child {
+    padding-right: 1.5rem;
+}
+
+.table-wrapper.dt-wrapper table.dataTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estado vazio */
+.table-wrapper.dt-wrapper table.dataTable tbody td.dataTables_empty {
+    padding: 3rem 1.5rem !important;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: .9375rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    background: var(--surface) !important;
+}
+
+/* Setas de ordenação — ícones limpos, sem sobreposição */
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting:before,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting:after,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_asc:before,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_asc:after,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_desc:before,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_desc:after {
+    position: absolute;
+    right: .875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+    font-size: .625rem;
+    z-index: 0;
+    opacity: .45;
+    color: var(--text-muted);
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting:before,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting:after {
+    opacity: .35;
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting:before {
+    transform: translateY(calc(-50% - 3px));
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting:after {
+    transform: translateY(calc(-50% + 3px));
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_asc:before {
+    opacity: 1;
+    z-index: 2;
+    color: var(--primary);
+    transform: translateY(-50%);
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_asc:after {
+    opacity: 0;
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_desc:after {
+    opacity: 1;
+    z-index: 2;
+    color: var(--primary);
+    transform: translateY(-50%);
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_desc:before {
+    opacity: 0;
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.dt-no-sort:before,
+.table-wrapper.dt-wrapper table.dataTable thead th.dt-no-sort:after,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_disabled:before,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_disabled:after {
+    display: none !important;
+}
+
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_asc,
+.table-wrapper.dt-wrapper table.dataTable thead th.sorting_desc {
+    padding-right: 2rem;
+}
+
+/* Remove listrado (box-shadow) do plugin */
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr.odd,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr.even,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr td,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr.odd td,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr.even td,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr td.sorting_1,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr td.sorting_2,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr td.sorting_3 {
+    box-shadow: none !important;
+}
+
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr:hover td,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr:hover td.sorting_1,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr:hover td.sorting_2,
+.table-wrapper.dt-wrapper table.dataTable.display tbody tr:hover td.sorting_3 {
+    box-shadow: none !important;
+}
+
+/* Toolbar — labels e controles */
+.table-wrapper.dt-wrapper .dt-toolbar {
+    padding: 1.125rem 1.5rem;
+    gap: 1.25rem;
+}
+
+.table-wrapper.dt-wrapper .dt-toolbar .dataTables_length label,
+.table-wrapper.dt-wrapper .dt-toolbar .dataTables_filter label {
+    font-size: .8125rem;
+    font-weight: 500;
+    letter-spacing: .01em;
+    gap: .625rem;
+}
+
+.table-wrapper.dt-wrapper .dt-toolbar .dataTables_length select {
+    min-width: 4.5rem;
+    padding: .5625rem .875rem;
+    font-size: .8125rem;
+    border-radius: 8px;
+}
+
+.table-wrapper.dt-wrapper .dt-toolbar .dataTables_filter input {
+    min-width: 220px;
+    padding: .5625rem .875rem;
+    font-size: .8125rem;
+    border-radius: 8px;
+    margin-left: .625rem;
+}
+
+.table-wrapper.dt-wrapper .dt-toolbar .dataTables_filter input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Footer — info e paginação */
+.table-wrapper.dt-wrapper .dt-footer {
+    padding: 1rem 1.5rem;
+    font-size: .8125rem;
+    letter-spacing: .01em;
+}
+
+.table-wrapper.dt-wrapper .dt-footer .dataTables_info {
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.table-wrapper.dt-wrapper .dt-footer .dataTables_paginate .paginate_button {
+    min-width: 34px;
+    height: 34px;
+    font-size: .8125rem;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+.table-wrapper.dt-wrapper .dt-footer .dataTables_paginate .paginate_button:hover,
+.table-wrapper.dt-wrapper .dt-footer .dataTables_paginate .paginate_button:hover * {
+    color: var(--text-primary) !important;
+    background: var(--surface-2) !important;
+    border-color: var(--border) !important;
+}
+
+body.dark-mode .table-wrapper.dt-wrapper .dt-footer .dataTables_paginate .paginate_button:hover,
+body.dark-mode .table-wrapper.dt-wrapper .dt-footer .dataTables_paginate .paginate_button:hover * {
+    color: var(--text-primary) !important;
+    background: var(--surface-2) !important;
+    border-color: var(--border) !important;
+}
+
+/* Indicador de carregamento */
+.table-wrapper.dt-wrapper .dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: .75rem 1.25rem;
+    font-size: .8125rem;
+    font-weight: 500;
+    font-family: var(--font);
+    color: var(--text-secondary);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 10;
+}
+
+/* Largura fluida */
+.table-wrapper.dt-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper.dt-wrapper .dataTables_wrapper,
+.table-wrapper.dt-wrapper table.dataTable {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .table-wrapper.dt-wrapper .dt-toolbar {
+        padding: 1rem 1.125rem;
+    }
+
+    .table-wrapper.dt-wrapper .dt-footer {
+        padding: .875rem 1.125rem;
+    }
+
+    .table-wrapper.dt-wrapper table.dataTable thead th,
+    .table-wrapper.dt-wrapper table.dataTable tbody td {
+        padding: .8125rem 1rem;
+    }
+
+    .table-wrapper.dt-wrapper table.dataTable thead th:first-child,
+    .table-wrapper.dt-wrapper table.dataTable tbody td:first-child {
+        padding-left: 1.125rem;
+    }
+
+    .table-wrapper.dt-wrapper table.dataTable thead th:last-child,
+    .table-wrapper.dt-wrapper table.dataTable tbody td:last-child {
+        padding-right: 1.125rem;
+    }
+
+    .table-wrapper.dt-wrapper .dt-toolbar .dataTables_filter input {
+        min-width: 0;
+        width: 100%;
+        margin-left: 0;
+        margin-top: .375rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-wrapper.dt-wrapper table.dataTable tbody td.dataTables_empty {
+        padding: 2rem 1rem !important;
+        font-size: .875rem;
+    }
+}

@@ -1,0 +1,52 @@
+---
+description: "Regras para modelagem e queries de banco de dados MySQL"
+globs: "**/*.sql"
+alwaysApply: false
+---
+
+# Regras de Banco de Dados
+
+## Motor Padrão
+
+- MySQL como banco principal
+- Charset: `utf8mb4` / Collation: `utf8mb4_unicode_ci`
+- Engine: `InnoDB` (suporte a transações e FK)
+
+## Nomenclatura
+
+- Tabelas: `snake_case` no plural (ex: `usuarios`, `pedidos_itens`)
+- Colunas: `snake_case` (ex: `nome_completo`, `data_criacao`)
+- Chave primária: sempre `id` (INT AUTO_INCREMENT)
+- Chaves estrangeiras: `nome_tabela_id` (ex: `usuario_id`, `evento_id`)
+- Índices: `idx_tabela_coluna` (ex: `idx_usuarios_email`)
+
+## Campos Padrão em Toda Tabela
+
+```sql
+id INT AUTO_INCREMENT PRIMARY KEY,
+criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ativo TINYINT(1) DEFAULT 1
+```
+
+## Boas Práticas
+
+- SEMPRE usar Prepared Statements no PHP
+- Nunca usar `SELECT *` em produção — listar colunas explicitamente
+- Criar índices para colunas usadas em WHERE, JOIN e ORDER BY
+- Usar transações para operações que envolvem múltiplas tabelas
+- Soft delete com campo `ativo` ao invés de DELETE físico
+
+## Organização de Arquivos SQL
+
+```
+/sql
+  /structure    → DDL (CREATE TABLE, ALTER TABLE)
+  /migrations   → alterações incrementais com data no nome
+  /seeds        → dados iniciais (INSERT)
+```
+
+## Padrão de Migration
+
+Nome do arquivo: `YYYY-MM-DD_descricao.sql`
+Exemplo: `2026-03-09_adicionar_campo_telefone_usuarios.sql`

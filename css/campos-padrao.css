@@ -1,0 +1,15 @@
+.campo-padrao-select-wrap {
+    display: flex;
+    gap: .35rem;
+    align-items: center;
+    min-width: 180px;
+}
+
+.campo-padrao-select-wrap .campo-padrao-id {
+    flex: 1;
+    min-width: 0;
+}
+
+.td-campo-padrao {
+    min-width: 200px;
+}

@@ -1,0 +1,90 @@
+---
+description: "Regras para desenvolvimento Front-End: HTML, CSS, JavaScript, jQuery"
+globs: "**/*.{html,css,js}"
+alwaysApply: false
+---
+
+# Regras Front-End
+
+## HTML
+
+- Usar HTML5 semântico: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`
+- Sempre incluir `lang="pt-BR"` no `<html>`
+- Charset UTF-8, viewport responsivo
+- Atributos `alt` em todas as imagens
+- Atributos `aria-label`, `role` em elementos interativos
+- Navegação funcional via teclado (Tab, Enter, Esc)
+
+## CSS
+
+- Arquivo separado em `/css/style.css` — NUNCA inline
+- Assets locais sempre via `asset()` / `asset_url()` (cache busting automático por `filemtime`)
+- Abordagem mobile-first com breakpoints Bootstrap
+- Flat Design: limpo, neutro, funcional
+- Usar design tokens CSS (custom properties):
+  ```css
+  :root {
+      --primary-color: #2563eb;
+      --secondary-color: #64748b;
+      --bg-color: #ffffff;
+      --text-color: #1e293b;
+      --border-radius: 8px;
+      --font-family: 'Inter', 'Roboto', sans-serif;
+  }
+  ```
+- Tipografia legível: Inter, Roboto, Lato ou Open Sans
+- Unidades relativas (`rem`, `em`), `line-height` entre 1.4 e 1.6
+- Classes utilitárias com nomes descritivos
+- Implementar Dark Mode com classe `.dark-mode` no body
+
+## JavaScript / jQuery
+
+- Arquivo separado em `/js/main.js` — NUNCA inline
+- Incluir scripts locais com `asset('js/modulo.js')` ou `asset_url('js/modulo.js')`
+- Funções pequenas, reutilizáveis e bem comentadas
+- Microinterações com jQuery: `fadeIn()`, `slideUp()`, `slideToggle()`
+- Validação de formulários no front antes do envio
+- Escape de dados dinâmicos antes de inserir no DOM
+- Padrão para chamadas AJAX:
+  ```javascript
+  $.ajax({
+      url: 'ajax/endpoint.php',
+      type: 'POST',
+      dataType: 'json',
+      data: { campo: valor },
+      success: function(response) {
+          if (response.status === 'success') {
+              // tratar sucesso
+          } else {
+              // tratar erro
+          }
+      },
+      error: function() {
+          alert('Erro de comunicação com o servidor.');
+      }
+  });
+  ```
+
+## Bibliotecas Permitidas
+
+- Bootstrap 5 (CDN ou local)
+- jQuery (última versão estável)
+- DataTables 1.13.8 — **sempre** via `NpsDataTable.create()` (ver skill `datatable`)
+- SweetAlert2 (para alertas e confirmações)
+- FontAwesome ou Bootstrap Icons
+- TailwindCSS (quando especificado)
+
+## DataTable (listagens CRUD)
+
+- HTML: `<div class="table-wrapper dt-wrapper">` + `<table class="display">`
+- JS: `NpsDataTable.create('#id', options)` — nunca `$('#id').DataTable()` direto
+- Assets: `js/datatable-config.js`, `css/datatable-override.css` (após `style.css`)
+- Coluna Ações: `<th class="dt-no-sort">`
+- **Não** usar `dataTables.bootstrap5.min.css/js`
+
+## Acessibilidade
+
+- Contraste alto entre texto e fundo
+- Foco visível em elementos interativos
+- Labels associados a inputs (`for`/`id`)
+- Dark Mode com toggle via jQuery

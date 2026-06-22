@@ -1,0 +1,43 @@
+---
+description: "Fluxo de trabalho, padrões de entrega e correções"
+alwaysApply: true
+---
+
+# Fluxo de Trabalho e Entregas
+
+## Antes de Codificar
+
+1. Confirmar o entendimento do pedido
+2. Verificar se há funções, estilos ou componentes reutilizáveis no projeto
+3. Definir a melhor estrutura de arquivos para modularização
+4. Avaliar se blocos de código podem ser reaproveitados
+
+## Durante o Desenvolvimento
+
+- Código organizado, comentado e modular
+- Funções reutilizáveis para qualquer tarefa repetitiva
+- Cada componente isolado em seu próprio arquivo
+- Back-End, Front-End e SQL em arquivos distintos
+
+## Correções
+
+- NUNCA reescrever o código inteiro
+- Corrigir apenas o trecho específico com comentários claros
+- Se a correção exigir ajuste estrutural, fornecer o arquivo completo corrigido
+- Indicar claramente o que mudou e por quê
+
+## Padrão de Entrega
+
+- Poupar tokens: entregar APENAS o essencial
+- Não criar documentação não solicitada
+- Sinalizar métodos e padrões utilizados apenas quando necessário
+- Se o usuário quiser mais detalhes, ele pedirá
+
+## Modelo CRUD Padrão
+
+Todo módulo CRUD deve conter:
+- Tela principal com DataTable via **`NpsDataTable.create()`** (skill `datatable`)
+- HTML com `table-wrapper dt-wrapper`; coluna Ações com `dt-no-sort`
+- Formulário de cadastro/edição (validação front + back)
+- Endpoints AJAX para operações (listar, inserir, editar, excluir)
+- Soft delete (campo `ativo`) ao invés de exclusão física
